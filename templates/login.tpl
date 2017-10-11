@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <form class="login">
-        <div class="form-group" action="post">
+      <form class="login" method="post">
+        <div class="form-group" >
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

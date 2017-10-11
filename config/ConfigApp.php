@@ -8,6 +8,8 @@ class ConfigApp
         ''=> 'IndexController#index',
         'listaCategorias' => 'categorias',
         'listaMangas' => 'mangas',
+        'login' => 'LoginController#index',
+        'logout' => 'LoginController#destroy'
     ];
 
 }
