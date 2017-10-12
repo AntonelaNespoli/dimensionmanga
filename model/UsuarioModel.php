@@ -3,7 +3,6 @@ class UsuarioModel extends Model
 {
 
   function __construct() {
-    session_start();
     parent::__construct();
   }
 
@@ -18,7 +17,13 @@ class UsuarioModel extends Model
    * UsuarioModel::isLoggedIn()
    */
   static function isLoggedIn() {
-    return isset($_SESSION['USER']) && (time() - $_SESSION['LAST_ACTIVITY'] > 999);
+    session_start();
+    $isLoggedIn = false;
+    if (isset($_SESSION['USER']) && ((time() - (int)$_SESSION['LAST_ACTIVITY']) < 1800)) {
+      $isLoggedIn = true;
+      $_SESSION['LAST_ACTIVITY'] = time();      
+    }
+    return $isLoggedIn;
   }
 }
 ?>

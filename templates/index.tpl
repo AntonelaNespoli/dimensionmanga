@@ -32,6 +32,10 @@
           <ul class="nav navbar-nav">
             <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')" class="nav-boton">Mangas</a></li>
             <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaCategorias')" class="nav-boton">Categorías</a></li>
+            {if $isLoggedIn}
+              <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearManga')" class="nav-boton">Subir Manga</a></li>
+              <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearCategoria')" class="nav-boton">Subir Categoría</a></li>
+            {/if}
           </ul>
         </div>
       </div>

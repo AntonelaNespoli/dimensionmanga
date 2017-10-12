@@ -28,4 +28,25 @@ class CategoriaController extends Controller
     $this->view->mostrarMangasPorCategoria($mangas);
   }
 
+  public function store()
+  {
+    if (UsuarioModel::isLoggedIn()) {
+      $nombre = $_POST['nombre'];
+      $this->model->guardarCategoria($nombre);
+      echo json_encode(['message' => 'La operación se completo con exito.']);
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+    }
+  }
+  public function destroy($params)
+  {
+    if (UsuarioModel::isLoggedIn()) {
+    $id_categoria = $params[0];
+    $this->model->borrarCategoria($id_categoria);
+    echo json_encode(['message' => 'La operación se completo con exito.']);
+  } else {
+    echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+  }
+  }
+
 }

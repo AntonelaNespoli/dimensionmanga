@@ -38,6 +38,10 @@ function login() {
             $(".login").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
         }
     });
+    request.fail(function(err){
+        console.error(err);
+    });
+}
 
     function grabarManga() {
         var nombre = $('form.formManga input[name=nombre]').val();
@@ -65,4 +69,22 @@ function login() {
         console.error(err);
     });
 }
-}
+
+function guardarCategoria() {
+    
+        var categoria = $('form.formCategoria input[name=nombre]').val();
+
+        var request = $.post('http://localhost/dimensionmanga/guardarCategoria', {
+            nombre: nombre,
+        }, function (res) {
+            res = JSON.parse(res);
+            if (res.message) {
+                $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+            } else if (res.error) {
+                $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+            }
+        });
+        request.fail(function(err){
+            console.error(err);
+        });
+    }

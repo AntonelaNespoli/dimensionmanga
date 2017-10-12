@@ -17,7 +17,7 @@ class CategoriaView extends View
   function errorCrear($error, $nombre){
     $this->asignarCategoriasForm($nombre);
     $this->smarty->assign('error', $error);
-    $this->smarty->display('templates/abmCategorias.tpl');
+    $this->smarty->display('templates/formCategorias.tpl');
   }
 
   private function asignarCategoriasForm($nombre=''){

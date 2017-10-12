@@ -1,6 +1,7 @@
 <?php
 include_once('model/MangasModel.php');
 include_once('view/MangasView.php');
+include_once('model/CategoriasModel.php');
 
 class MangaController extends Controller
 {
@@ -9,6 +10,7 @@ class MangaController extends Controller
   {
     $this->view = new MangasView();
     $this->model = new MangasModel();
+    $this->c_model = new CategoriasModel();
   }
 
   public function index()
@@ -19,7 +21,8 @@ class MangaController extends Controller
 
   public function create()
   {
-    $this->view->mostrarCrearMangas();
+    $categorias = $this->c_model->getCategorias();
+    $this->view->mostrarCrearMangas($categorias);
   }
 
   public function descripcion(){
@@ -36,7 +39,7 @@ class MangaController extends Controller
       $imagen = $_POST['imagen'];
       $descripcion = $_POST['descripcion'];
       $id_categoria =  $_POST['id_categoria'];
-      $this->model->guardarTarea($nombre, $autor, $imagen, $descripcion, $id_categoria);
+      $this->model->guardarManga($nombre, $autor, $imagen, $descripcion, $id_categoria);
       echo json_encode(['message' => 'La operación se completo con exito.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
@@ -45,9 +48,14 @@ class MangaController extends Controller
 
   public function destroy($params)
   {
+    if (UsuarioModel::isLoggedIn()) {
     $id_manga = $params[0];
     $this->model->borrarManga($id_manga);
-    header('Location: '.HOME);
+    echo json_encode(['message' => 'La operación se completo con exito.']);
+  } else {
+    $this->view->errorCrear($error, $nombre, $autor, $imagen, $descripcion, $id_categoria);
+    echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+  }
   }
   
 }
