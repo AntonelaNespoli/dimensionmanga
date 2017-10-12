@@ -4,6 +4,7 @@ class UsuarioModel extends Model
 
   function __construct() {
     session_start();
+    parent::__construct();
   }
 
   function getUser($userMail){

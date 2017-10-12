@@ -1,4 +1,7 @@
 <?php
+
+  error_reporting(E_ALL ^ E_NOTICE);
+  
   define('ACTION', 0);
   define('VALOR1', 1);
   define('VALOR2', 2);

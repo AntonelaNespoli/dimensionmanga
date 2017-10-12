@@ -55,9 +55,9 @@ function login() {
             }, function (res) {
                 res = JSON.parse(res);
                 if (res.message) {
-                    $(".login").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+                    $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
                 } else if (res.error) {
-                    $(".login").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+                    $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
                 }
             });
         
