@@ -16,7 +16,7 @@
   include_once 'controller/IndexController.php';
   include_once 'controller/MangaController.php';
   include_once 'controller/LoginController.php';
-  include_once 'CategoriaController.php';
+  include_once 'controller/CategoriaController.php';
 
 function parseURL($url)
 {

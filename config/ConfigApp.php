@@ -10,7 +10,8 @@ class ConfigApp
         'listaMangas' => 'MangaController#index',
         'login' => 'LoginController#index',
         'logout' => 'LoginController#destroy',
-        'descripcionManga' => 'MangaController#descripcion'
+        'descripcionManga' => 'MangaController#descripcion',
+        'contenidoCategoria' => 'CategoriaController#mangasPorCategoria'
     ];
 
 }

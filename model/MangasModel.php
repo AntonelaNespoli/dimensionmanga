@@ -1,9 +1,14 @@
 <?php
 class MangasModel extends Model
 {
-  function getMangas(){
+  function getMangas($id_categoria = null){
+    if($id_categoria == null){
     $sentencia = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria");
     $sentencia->execute();
+    }else{
+      $sentencia = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria where manga.id_categoria = ?");
+      $sentencia->execute([$id_categoria]);
+    } 
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 

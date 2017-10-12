@@ -9,6 +9,12 @@ function navigate(url) {
     });
 }
 
+function navigatePost(url, data) {
+    $.post(url, data, function (res) {
+        $('.main-content').html(res);
+    });
+}
+
 function mangaModal(id) {
     $.post('http://localhost/dimensionmanga/descripcionManga', {id_manga: id}, function (data) {
         $('.modal-body').html(data);
