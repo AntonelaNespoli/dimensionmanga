@@ -16,6 +16,7 @@ class MangaController extends Controller
     $mangas = $this->model->getMangas();    
     $this->view->mostrarMangas($mangas);
   }
+
   public function create()
   {
     $this->view->mostrarCrearMangas();
@@ -27,47 +28,26 @@ class MangaController extends Controller
     $this->view->mostrarManga($manga);
   }
 
-  /*public function store()
+  public function store()
   {
-    $nombre = $_POST['nombre'];
-    $autor = $_POST['autor'];
-    $imagen = $_POST['imagen'];
-    $descripcion = $_POST['descripcion'];
-    $id_categoria =  $_POST['id_categoria'];
-    if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-      if($this->tienePalabrasProhibidas($nombre)){
-        $this->view->errorCrear("El 'titulo' tiene palabras prohibidas", $titulo, $autor, $imagen, $descripcion, $id_categoria);
-      }
-    }else{
-        $this->view->errorCrear("El campo 'título' es requerido", $titulo, $autor, $imagen, $descripcion, $id_categoria);
+    if (UsuarioModel::isLoggedIn()) {
+      $nombre = $_POST['nombre'];
+      $autor = $_POST['autor'];
+      $imagen = $_POST['imagen'];
+      $descripcion = $_POST['descripcion'];
+      $id_categoria =  $_POST['id_categoria'];
+      $this->model->guardarTarea($nombre, $autor, $imagen, $descripcion, $id_categoria);
+      echo json_encode(['message' => 'La operación se completo con exito.']);
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }
-    if(isset($_POST['autor']) && !empty($_POST['autor'])){
-        if($this->tienePalabrasProhibidas($autor)){
-          $this->view->errorCrear("El autor tiene palabras prohibidas", $titulo, $autor, $imagen, $descripcion, $id_categoria);
-        }
-    }else{
-        $this->view->errorCrear("El campo 'autor' es requerido", $titulo, $autor, $imagen, $descripcion, $id_categoria);
-    }
-    if(isset($_POST['descripcion']) && !empty($_POST['descripcion'])){
-        if($this->tienePalabrasProhibidas($descripcion)){
-          $this->view->errorCrear("La descripción tiene palabras prohibidas", $titulo, $autor, $imagen, $descripcion, $id_categoria);
-        }
-    }else{
-        $this->view->errorCrear("El campo 'descripción es requerido", $titulo, $autor, $imagen, $descripcion, $id_categoria);
-    }
-
-    }else{
-      $this->model->guardarTarea($titulo, $descripcion, $completada);
-      header('Location: '.HOME);
-    }
-    }
-    }
-  }*/
+  }
 
   public function destroy($params)
   {
-    $id_tarea = $params[0];
-    $this->model->borrarTarea($id_tarea);
+    $id_manga = $params[0];
+    $this->model->borrarManga($id_manga);
     header('Location: '.HOME);
   }
+  
 }

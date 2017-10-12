@@ -11,7 +11,7 @@ class MangasView extends View
   }
   function mostrarCrearMangas(){
     $this->assignarMangasForm();
-    $this->smarty->display('templates/abmMangas.tpl');
+    $this->smarty->display('templates/formManga.tpl');
   }
 
   function errorCrear($error, $nombre, $autor, $imagen, $descripcion, $id_categoria){

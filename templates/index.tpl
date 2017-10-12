@@ -14,9 +14,12 @@
   <title>Dimensión Manga</title>
 </head>
 <body>
+
   <header>
+      
     <!----- nav bar ---->
     <nav class="navbar navbar-default">
+        <button type="submit" onclick="navigate('http://localhost/dimensionmanga/login')" class="btn btn-login">Sing in</button>
       <div class="container-fluid">
         <div class="navbar-header"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')"class="navbar-brand navbar-link">Dimensión Manga</a>
           <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span>

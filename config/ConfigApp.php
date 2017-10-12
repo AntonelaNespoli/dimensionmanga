@@ -11,7 +11,11 @@ class ConfigApp
         'login' => 'LoginController#index',
         'logout' => 'LoginController#destroy',
         'descripcionManga' => 'MangaController#descripcion',
-        'contenidoCategoria' => 'CategoriaController#mangasPorCategoria'
+        'contenidoCategoria' => 'CategoriaController#mangasPorCategoria',
+        'crearManga'=> 'MangaController#create',
+        'crearCategoria'=> 'CategoriaController#create',
+        'verificarUsuario' => 'LoginController#verify',
+        'guardarManga' => 'MangaController#store'
     ];
 
 }

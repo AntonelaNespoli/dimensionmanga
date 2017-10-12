@@ -8,7 +8,7 @@ class LoginController extends Controller
   function __construct()
   {
     $this->view = new LoginView();
-    $this->model = new LoginModel();
+    $this->model = new UsuarioModel();
   }
 
   public function index()
@@ -19,18 +19,18 @@ class LoginController extends Controller
   public function verify()
   {
       $userMail = $_POST['mail'];
-      $password = $_POST['contraseña'];
+      $password = $_POST['clave'];
 
       if(!empty($userMail) && !empty($password)){
         $user = $this->model->getUser($userMail);
-        if((!empty($user)) && password_verify($password, $user[0]['contraseña'])) {
+
+        if((!empty($user)) && password_verify($password, $user['clave'])) {
             session_start();
             $_SESSION['USER'] = $userMail;
             $_SESSION['LAST_ACTIVITY'] = time();
-            header('Location: '.HOME);
-        }
-        else{
-            $this->view->mostrarLogin('Usuario o contraseña incorrectos');
+            echo json_encode(['url' => HOME]);
+        } else {
+            echo json_encode(['error' => 'Usuario o contraseña incorrectos']);
         }
       }
   }
