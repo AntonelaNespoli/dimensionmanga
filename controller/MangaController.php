@@ -38,8 +38,8 @@ class MangaController extends Controller
       $autor = $_POST['autor'];
       $imagen = $_POST['imagen'];
       $descripcion = $_POST['descripcion'];
-      $id_categoria =  $_POST['id_categoria'];
-      $this->model->guardarManga($nombre, $autor, $imagen, $descripcion, $id_categoria);
+      $categoria =  $_POST['categoria'];
+      $this->model->guardarManga($nombre, $autor, $imagen, $descripcion, $categoria);
       echo json_encode(['message' => 'La operación se completo con exito.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);

@@ -21,9 +21,9 @@
           <textarea name="descripcion" id="descripcion" name="descripcion" rows="8" cols="50" required>{$descripcion}</textarea>
         </div>
         <div class="form-group">
-            <select name="categoria">
+            <select name='categoria'>
                 {foreach from=$categorias item=categoria}
-                    <option value="{$categoria['id_categoria']}" required>{$categoria['nombre']}</option>
+                    <option value="{$categoria['id_categoria']}">{$categoria['nombre']}</option>
                 {/foreach}
             </select>
         </div>
