@@ -6,4 +6,5 @@ class UsuarioModel extends Model
     $sentencia->execute([$userMail]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
-  ?>
+}
+?>

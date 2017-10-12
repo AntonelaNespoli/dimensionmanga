@@ -2,9 +2,15 @@
 class MangasModel extends Model
 {
   function getMangas(){
-    $sentencia = $this->db->prepare( "select * from manga");
+    $sentencia = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria");
     $sentencia->execute();
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  function getManga($id_manga){
+    $sentencia  = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria where manga.id_manga = ?");
+    $sentencia->execute([$id_manga]);
+    return $sentencia->fetch();
   }
 
   function guardarManga($nombre, $autor, $imagen, $descripcion, $id_categoria){

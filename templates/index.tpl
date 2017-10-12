@@ -18,7 +18,7 @@
     <!----- nav bar ---->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="navbar-header"><a href="index.html" class="navbar-brand navbar-link">Dimensión Manga</a>
+        <div class="navbar-header"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')"class="navbar-brand navbar-link">Dimensión Manga</a>
           <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -27,8 +27,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="nav navbar-nav">
-            <li role="presentation"><a href="#" class="nav-boton">Mangas</a></li>
-            <li role="presentation"><a href="#" class="nav-boton">Categorías</a></li>
+            <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')" class="nav-boton">Mangas</a></li>
+            <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaCategorias')" class="nav-boton">Categorías</a></li>
           </ul>
         </div>
       </div>
@@ -43,7 +43,7 @@
   <footer class="container footer">
     <div class="row">
       <div class="col-md-4 col-sm-6 footer-navigation">
-        <a href="#"><h3>  Dimension Manga </h3></a>
+        <a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')" ><h3>  Dimension Manga </h3></a>
         <p class="company-name">Dimensión Manga © 2017</p>
       </div>
       <div class="col-md-4 col-sm-6 footer-contacts">

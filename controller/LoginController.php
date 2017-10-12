@@ -30,7 +30,7 @@ class LoginController extends Controller
             header('Location: '.HOME);
         }
         else{
-            $this->view->mostrarLogin('Usuario o Password incorrectos');
+            $this->view->mostrarLogin('Usuario o contraseña incorrectos');
         }
       }
   }
