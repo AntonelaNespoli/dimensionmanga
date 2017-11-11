@@ -19,7 +19,14 @@
       
     <!----- nav bar ---->
     <nav class="navbar navbar-default">
-        <button type="submit" onclick="navigate('http://localhost/dimensionmanga/login')" class="btn btn-login">Sing in</button>
+    
+    {if $isLoggedIn}
+    <a href="logout" class="btn btn-login">Sing out</a>
+    {else}
+      <button type="submit" onclick="navigate('http://localhost/dimensionmanga/login')" class="btn btn-login">Sing in</button>
+    {/if}
+    
+        
       <div class="container-fluid">
         <div class="navbar-header"><a href="#" onclick="navigate('http://localhost/dimensionmanga/listaMangas')"class="navbar-brand navbar-link">Dimensión Manga</a>
           <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span>
@@ -42,9 +49,11 @@
     </nav>
     <!-- fin nav bar -->
   </header>
-
+    <div id ="mensaje">
+    </div>
     <div class="main-content">
     </div>
+  
 
   <!-- pie de pagina-->
   <footer class="container footer">
@@ -76,10 +85,9 @@
     <div class="modal-content contenido-emergente">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="boton-cerrar-emergente">&times;</span></button>
-        <h4 class="modal-title">Detalles</h4>
+        <h4 class="modal-title">Detalles </h4>
       </div>
-      <div class="modal-body"></div>
-    </div><!-- /.modal-content -->
+      <div class="modal-body"></div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
   <script src="js/jquery-3.2.1.min.js"></script>

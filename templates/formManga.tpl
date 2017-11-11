@@ -1,20 +1,17 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      {if isset($error) }
-        <div class="alert alert-danger" role="alert">{$error}</div>
-      {/if}
-      <form action="guardarManga" method="post">
+      <form class="formManga" method="post" enctype="multipart/form-data" onsubmit="grabarManga(this, event)">
         <div class="form-group">
           <label for="nombre">Nombre Manga:</label>
           <input type="text" class="form-control" id="nombre" name="nombre"  value="{$nombre}" placeholder="Nombre del Manga" required>
         </div>
         <div class="form-group">
-            <label for="nombre">Autor Manga:</label>
+            <label for="autor">Autor Manga:</label>
             <input type="text" class="form-control" id="autor" name="autor"  value="{$autor}" placeholder="Autor del Manga"  required>
           </div>
           <div class="form-group">
-            <label for="nombre">Imagen Manga:</label>
-            <input type="text" class="form-control" id="imagen" name="imagen"  value="{$imagen}" placeholder="url de la imagen" required>
+            <label for="imagen">Imagen Manga:</label>
+            <input type=file id="imagen" name="imagenes[]" accept="image/*" placeholder="url de la imagen" multiple required>
           </div>
         <div class="form-group">
           <label for="descripcion">Descripcion</label>

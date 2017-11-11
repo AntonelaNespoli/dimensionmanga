@@ -43,21 +43,70 @@ function login() {
     });
 }
 
-    function grabarManga() {
+function deleteManga(id_manga){
+
+    $.ajax({
+        url:'http://localhost/dimensionmanga/eliminarManga/' +id_manga,
+        type: "DELETE",
+        success:function(res){
+            $('#'+id_manga).remove();
+            console.log(JSON.parse(res));
+            res = JSON.parse(res);
+            if (res.message) {
+                $("#mensaje").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+            } else if (res.error) {
+                $("#mensaje").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+            }
+        },
+        error:function(err) {
+            console.error(err);
+         }
+    })
+}
+
+function grabarManga(form, event) {
+
+        event.preventDefault();
+    
+        var form_data = new FormData(form);
+
+        $.ajax({
+            url:'http://localhost/dimensionmanga/guardarManga',
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: "POST",
+            success:  function (res) {
+                console.log(JSON.parse(res));
+                res = JSON.parse(res);
+                if (res.message) {
+                    $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+                } else if (res.error) {
+                    $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+                }
+            },
+            error:function(err){
+                console.error(err);
+            }
+        });
+    }
+/*
         var nombre = $('form.formManga input[name=nombre]').val();
         var autor = $('form.formManga input[name=autor]').val();
         var imagen = $('form.formManga input[name=imagen]').val();
         var descripcion = $('form.formManga input[name=descripcion]').val();
-        var id_categoria = $('form.formManga input[name=id_categoria]').val();
-        
+        var categoria = $('form.formManga input[name=categoria]').val();
+        console.log(nombre, autor, imagen, descripcion, categoria);
             var request = $.post('http://localhost/dimensionmanga/guardarManga', {
                 nombre: nombre,
                 autor: autor,
                 imagen: imagen,
                 descripcion: descripcion,
-                id_categoria: id_categoria
+                categoria: categoria
             }, function (res) {
+                console.log(JSON.parse(res));
                 res = JSON.parse(res);
+
                 if (res.message) {
                     $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
                 } else if (res.error) {
@@ -67,8 +116,9 @@ function login() {
         
     request.fail(function(err){
         console.error(err);
-    });
-}
+    });*/
+
+
 
 function guardarCategoria() {
     

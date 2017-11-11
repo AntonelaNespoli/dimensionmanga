@@ -17,10 +17,26 @@ class MangasModel extends Model
     $sentencia->execute([$id_manga]);
     return $sentencia->fetch();
   }
+  private function subirImagenes($imagenes){
+    $rutas = [];
+    foreach ($imagenes as $imagen) {
+      $tipo = $_FILES[$imagen]['type'];
+      $destino_final = 'images/' . uniqid() .'.'. $tipo;
+      move_uploaded_file($imagen, $destino_final);
+      $rutas[] = $destino_final;
+    }
+    return $rutas;
+  }
 
-  function guardarManga($nombre, $autor, $imagen, $descripcion, $id_categoria){
-    $sentencia = $this->db->prepare('INSERT INTO manga(nombre, autor, imagen, descripcion, id_categoria) VALUES(?,?,?,?,?)');
-    $sentencia->execute([$nombre, $autor, $imagen, $descripcion, $id_categoria]);
+  function guardarManga($nombre, $autor, $descripcion, $id_categoria, $imagenes){
+    $sentencia = $this->db->prepare('INSERT INTO manga(nombre, autor, descripcion, id_categoria) VALUES(?,?,?,?)');
+    $sentencia->execute([$nombre, $autor, $descripcion, $id_categoria]);
+    $id_manga = $this->db->lastInsertId();
+    $rutas = $this->subirImagenes($imagenes);
+    $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(fk_id_manga, ruta) VALUES(?,?)');
+    foreach ($rutas as $ruta) {
+      $sentencia_imagenes->execute([$id_manga,$ruta]);
+    }
   }
 
   function editarManga($id_manga,$nombre, $autor, $imagen, $descripcion, $id_categoria){
