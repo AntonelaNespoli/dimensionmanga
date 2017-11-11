@@ -16,7 +16,9 @@ class ConfigApp
         'crearCategoria'=> 'CategoriaController#create',
         'verificarUsuario' => 'LoginController#verify',
         'guardarManga' => 'MangaController#store',
-        'guardarCategoria' => 'CategoriaController#store'
+        'guardarCategoria' => 'CategoriaController#store',
+        'editarManga' => 'MangaController#store',
+        'eliminarManga' => 'MangaController#delete'
     ];
 
 }
