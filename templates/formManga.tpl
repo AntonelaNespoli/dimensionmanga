@@ -1,4 +1,6 @@
 <div class="row">
+    <div class="col-md-8 col-md-offset-2" id ="mensajeForm">
+    </div>
     <div class="col-md-6 col-md-offset-3">
       <form class="formManga" method="post" enctype="multipart/form-data" onsubmit="grabarManga(this, event)">
         <div class="form-group">

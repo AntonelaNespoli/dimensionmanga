@@ -1,5 +1,7 @@
 <article class="container cuerpo-index">
     <div class="row">
+        <div class="col" id ="mensaje">
+        </div>
         <div class="col">
             {foreach from=$mangas item=manga}
                 <section id="{$manga['id_manga']}" class="col-xs-12 col-sm-4 col-md-3 col-lg-3 portada">

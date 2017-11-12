@@ -49,8 +49,7 @@
     </nav>
     <!-- fin nav bar -->
   </header>
-    <div id ="mensaje">
-    </div>
+   
     <div class="main-content">
     </div>
   

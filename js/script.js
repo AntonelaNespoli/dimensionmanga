@@ -1,3 +1,5 @@
+//Funciones Basicas
+
 'use strict';
 $(document).ready(function () {
     navigate('http://localhost/dimensionmanga/listaMangas');
@@ -16,11 +18,13 @@ function navigatePost(url, data) {
 }
 
 function mangaModal(id) {
-    $.post('http://localhost/dimensionmanga/descripcionManga', {id_manga: id}, function (data) {
+    $.post('http://localhost/dimensionmanga/descripcionManga', { id_manga: id }, function (data) {
         $('.modal-body').html(data);
         $('#manga-modal').modal('show');
     });
 }
+
+//Funciones Login
 
 function login() {
 
@@ -35,106 +39,88 @@ function login() {
         if (res.url) {
             window.location = res.url;
         } else if (res.error) {
-            $(".login").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+            $("#mensajeLogin").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
         }
     });
-    request.fail(function(err){
+    request.fail(function (err) {
         console.error(err);
     });
 }
 
-function deleteManga(id_manga){
+//Funciones Items
 
+function deleteManga(id_manga) {
+    event.preventDefault();
     $.ajax({
-        url:'http://localhost/dimensionmanga/eliminarManga/' +id_manga,
+        url: 'http://localhost/dimensionmanga/eliminarManga/' + id_manga,
         type: "DELETE",
-        success:function(res){
-            $('#'+id_manga).remove();
+        success: function (res) {
+            $('#' + id_manga).remove();
             console.log(JSON.parse(res));
             res = JSON.parse(res);
             if (res.message) {
-                $("#mensaje").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+                $("#mensaje").html($('<div class="alert alert-success" role="alert"></div>').append(res.message));
             } else if (res.error) {
-                $("#mensaje").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+                $("#mensaje").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
             }
         },
-        error:function(err) {
+        error: function (err) {
             console.error(err);
-         }
+        }
     })
 }
 
 function grabarManga(form, event) {
+    event.preventDefault();
 
-        event.preventDefault();
-    
-        var form_data = new FormData(form);
+    var form_data = new FormData(form);
 
-        $.ajax({
-            url:'http://localhost/dimensionmanga/guardarManga',
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: "POST",
-            success:  function (res) {
-                console.log(JSON.parse(res));
-                res = JSON.parse(res);
-                if (res.message) {
-                    $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
-                } else if (res.error) {
-                    $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
-                }
-            },
-            error:function(err){
-                console.error(err);
-            }
-        });
-    }
-/*
-        var nombre = $('form.formManga input[name=nombre]').val();
-        var autor = $('form.formManga input[name=autor]').val();
-        var imagen = $('form.formManga input[name=imagen]').val();
-        var descripcion = $('form.formManga input[name=descripcion]').val();
-        var categoria = $('form.formManga input[name=categoria]').val();
-        console.log(nombre, autor, imagen, descripcion, categoria);
-            var request = $.post('http://localhost/dimensionmanga/guardarManga', {
-                nombre: nombre,
-                autor: autor,
-                imagen: imagen,
-                descripcion: descripcion,
-                categoria: categoria
-            }, function (res) {
-                console.log(JSON.parse(res));
-                res = JSON.parse(res);
-
-                if (res.message) {
-                    $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
-                } else if (res.error) {
-                    $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
-                }
-            });
-        
-    request.fail(function(err){
-        console.error(err);
-    });*/
-
-
-
-function guardarCategoria() {
-    
-        var categoria = $('form.formCategoria input[name=nombre]').val();
-
-        var request = $.post('http://localhost/dimensionmanga/guardarCategoria', {
-            nombre: nombre,
-        }, function (res) {
+    $.ajax({
+        url: 'http://localhost/dimensionmanga/guardarManga',
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: "POST",
+        success: function (res) {
+            console.log(JSON.parse(res));
             res = JSON.parse(res);
             if (res.message) {
-                $(".formManga").append($('<div class="alert alert-success " role="alert"></div>').html(res.message));
+                $("#mensajeForm").html($('<div class="alert alert-success " role="alert"></div>').append(res.message));
             } else if (res.error) {
-                $(".formManga").append($('<div class="alert alert-danger" role="alert"></div>').html(res.error));
+                $("#mensajeForm").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
             }
-        });
-        request.fail(function(err){
+        },
+        error: function (err) {
             console.error(err);
-        });
-    }
+        }
+    });
+}
+
+
+//Funciones Categorias
+
+function guardarCategoria(form, event) {
+    event.preventDefault();
+
+    var form_data = new FormData(form);
+
+    $.ajax({
+        url: 'http://localhost/dimensionmanga/guardarCategoria',
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: "POST",
+        success: function (res) {
+            console.log(JSON.parse(res));
+            res = JSON.parse(res);
+            if (res.message) {
+                $("#mensajeCategoria").html($('<div class="alert alert-success " role="alert"></div>').append(res.message));
+            } else if (res.error) {
+                $("#mensajeCategoria").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
+            }
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+}
