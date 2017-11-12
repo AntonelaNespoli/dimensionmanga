@@ -1,5 +1,7 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-4 col-md-offset-4" id="mensajeLogin">
+    </div>
     <div class="col-md-4 col-md-offset-4">
       <form class="login" method="post">
         <div class="form-group" >
