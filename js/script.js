@@ -96,6 +96,9 @@ function grabarManga(form, event) {
     });
 }
 
+function editManga(id_manga){
+    navigate('http://localhost/dimensionmanga/editarManga/' + id_manga);
+}
 
 //Funciones Categorias
 

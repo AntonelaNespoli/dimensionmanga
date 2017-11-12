@@ -1,4 +1,5 @@
 <?php
+
 class MangasModel extends Model
 {
   function getMangas($id_categoria = null){
@@ -17,35 +18,40 @@ class MangasModel extends Model
     $sentencia->execute([$id_manga]);
     return $sentencia->fetch();
   }
-  private function subirImagenes($imagenes){
+
+  private function subirImagenes($imagenes, $id_manga){
+
     $rutas = [];
+
     foreach ($imagenes as $imagen) {
       $tipo = $_FILES[$imagen]['type'];
       $destino_final = 'images/' . uniqid() .'.'. $tipo;
       move_uploaded_file($imagen, $destino_final);
       $rutas[] = $destino_final;
     }
-    return $rutas;
+
+    $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(fk_id_manga, ruta) VALUES(?,?)');
+
+    foreach ($rutas as $ruta) {
+      $sentencia_imagenes->execute([$id_manga,$ruta]);
+    }
   }
 
   function guardarManga($nombre, $autor, $descripcion, $id_categoria, $imagenes){
     $sentencia = $this->db->prepare('INSERT INTO manga(nombre, autor, descripcion, id_categoria) VALUES(?,?,?,?)');
     $sentencia->execute([$nombre, $autor, $descripcion, $id_categoria]);
     $id_manga = $this->db->lastInsertId();
-    $rutas = $this->subirImagenes($imagenes);
-    $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(fk_id_manga, ruta) VALUES(?,?)');
-    foreach ($rutas as $ruta) {
-      $sentencia_imagenes->execute([$id_manga,$ruta]);
-    }
+    $this->subirImagenes($imagenes, $id_manga);
   }
 
-  function editarManga($id_manga,$nombre, $autor, $imagen, $descripcion, $id_categoria){
-    $sentencia = $this->db->prepare( "update from manga where id_manga=?");
-    $sentencia->execute([$id_manga, $nombre, $autor, $imagen, $descripcion, $id_categoria]);
+  function editarManga($id_manga, $nombre, $autor, $descripcion, $id_categoria, $imagenes){
+    $sentencia = $this->db->prepare( "UPDATE manga SET nombre = ?, autor = ?, descripcion = ?, id_categoria = ? WHERE id_manga=?");
+    $sentencia->execute([$nombre, $autor, $descripcion, $id_categoria, $id_manga]);
+    $this->subirImagenes($imagenes, $id_manga);
   }
 
   function borrarManga($id_manga){
-    $sentencia = $this->db->prepare( "delete from manga where id_manga=?");
+    $sentencia = $this->db->prepare( "DELETE FROM manga WHERE id_manga=?");
     $sentencia->execute([$id_manga]);
   }
 }

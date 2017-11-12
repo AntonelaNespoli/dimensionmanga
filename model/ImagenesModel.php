@@ -6,6 +6,11 @@ class ImagenesModel extends Model
         $sentencia->execute([$id_manga]);
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function deleteImagen($id_imagen){
+        $sentencia = $this->db->prepare( "DELETE FROM imagen WHERE id_imagen = ?");
+        $sentencia->execute([$id_imagen]);
+    }
 }
 
 ?>

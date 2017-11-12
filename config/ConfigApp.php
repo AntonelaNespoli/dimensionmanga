@@ -17,8 +17,9 @@ class ConfigApp
         'verificarUsuario' => 'LoginController#verify',
         'guardarManga' => 'MangaController#store',
         'guardarCategoria' => 'CategoriaController#store',
-        'editarManga' => 'MangaController#store',
-        'eliminarManga' => 'MangaController#delete'
+        'editarManga' => 'MangaController#edit',
+        'eliminarManga' => 'MangaController#delete',
+        'eliminarImagen' => 'MangaController#deleteImagen'
     ];
 
 }
