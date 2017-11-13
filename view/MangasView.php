@@ -10,10 +10,13 @@ class MangasView extends View
     $this->smarty->assign('manga', $manga);
     $this->smarty->display('templates/mangaModal.tpl');
   }
-  function mostrarCrearMangas($categorias, $manga = null){
+  function mostrarCrearMangas($categorias, $manga = null, $imagenes = null){
     $this->smarty->assign('categorias', $categorias);
     if ($manga) {
       $this->smarty->assign('manga', $manga);
+      if ($imagenes){
+        $this->smarty->assign('imagenes', $imagenes);
+      }
     }
     $this->smarty->display('templates/formManga.tpl');
   }
