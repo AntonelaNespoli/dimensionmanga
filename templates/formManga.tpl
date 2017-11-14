@@ -25,7 +25,7 @@
               {/foreach}
           </select>
       </div>
-      <button type="submit" class="btn btn-default">Crear</button>
+      <button type="submit" class="btn btn-default">Guardar manga</button>
     </form>
   </div>
   <div class="col-md-8 col-md-offset-2" id ="mensajeForm">

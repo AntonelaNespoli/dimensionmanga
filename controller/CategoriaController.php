@@ -19,10 +19,12 @@ class CategoriaController extends Controller
     $categorias = $this->model->getCategorias();
     $this->view->mostrarCategorias($categorias);
   }
+
   public function create()
   {
     $this->view->mostrarCrearCategorias();
   }
+
   public function mangasPorCategoria(){
     $id_categoria= $_POST['id_categoria'];
     $categoria = $this->model->getCategoria($id_categoria);
@@ -36,13 +38,22 @@ class CategoriaController extends Controller
   public function store()
   {
     if (UsuarioModel::isLoggedIn()) {
+
       $nombre = $_POST['nombre'];
-      $this->model->guardarCategoria($nombre);
+      $id_categoria = $_POST['id_categoria'];
+
+      if (!empty($id_categoria)) {
+        $this->model->editarCategoria($nombre, $id_categoria);
+      } else {
+        $this->model->guardarCategoria($nombre);
+      }
+
       echo json_encode(['message' => 'La categoría se guardo exitosamente.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }
   }
+
   public function delete($params)
   {
     if (UsuarioModel::isLoggedIn()) {
@@ -52,6 +63,16 @@ class CategoriaController extends Controller
   } else {
     echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
   }
+  }
+
+  public function edit($params) {
+    if (UsuarioModel::isLoggedIn()) {
+      $id_categoria = $params[0];
+      $categoria = $this->model->getCategoria($id_categoria);
+      $this->view->mostrarCrearCategorias($categoria);
+    } else {
+      header('Location: ' . HOME);
+    }
   }
 
 }

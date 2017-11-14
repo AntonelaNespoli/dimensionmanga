@@ -131,7 +131,7 @@ function guardarCategoria(form, event) {
     event.preventDefault();
 
     var form_data = new FormData(form);
-
+console.log(form);
     $.ajax({
         url: 'http://localhost/dimensionmanga/guardarCategoria',
         contentType: false,
@@ -173,4 +173,8 @@ function deleteCategoria(id_categoria) {
             console.error(err);
         }
     })
+}
+
+function editCategoria(id_categoria){
+    navigate('http://localhost/dimensionmanga/editarCategoria/' + id_categoria);
 }

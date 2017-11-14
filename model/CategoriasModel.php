@@ -19,7 +19,7 @@ class CategoriasModel extends Model
   }
 
   function editarCategoria($nombre, $id_categoria){
-    $sentencia = $this->de->prepare("UPDATE FROM categoria WHERE id_categoria=?");
+    $sentencia = $this->db->prepare("UPDATE categoria SET nombre = ? WHERE id_categoria=?");
     $sentencia->execute([$nombre, $id_categoria]);
   }
   

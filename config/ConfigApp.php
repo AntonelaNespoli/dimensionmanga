@@ -12,6 +12,7 @@ class ConfigApp
         'crearCategoria'=> 'CategoriaController#create',
         'guardarCategoria' => 'CategoriaController#store',
         'eliminarCategoria' => 'CategoriaController#delete',
+        'editarCategoria' => 'CategoriaController#edit',
         //Configuración para url's categorias
         'listaMangas' => 'MangaController#index',
         'descripcionManga' => 'MangaController#descripcion',
