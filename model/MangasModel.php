@@ -14,7 +14,7 @@ class MangasModel extends Model
   }
 
   function getManga($id_manga){
-    $sentencia  = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria where manga.id_manga = ?");
+    $sentencia  = $this->db->prepare( "SELECT manga.*,c.nombre AS categoria FROM manga LEFT JOIN categoria AS c ON c.id_categoria = manga.id_categoria WHERE manga.id_manga = ?");
     $sentencia->execute([$id_manga]);
     return $sentencia->fetch();
   }
@@ -24,7 +24,7 @@ class MangasModel extends Model
     $rutas = [];
 
     foreach ($imagenes as $imagen) {
-      $tipo = $_FILES[$imagen]['type'];
+      $tipo = $_FILES[$imagen]['type']; //mimetype probar
       $destino_final = 'images/' . uniqid() .'.'. $tipo;
       move_uploaded_file($imagen, $destino_final);
       $rutas[] = $destino_final;

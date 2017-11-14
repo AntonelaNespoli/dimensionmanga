@@ -2,9 +2,15 @@
 class CategoriasModel extends Model
 {
   function getCategorias(){
-    $sentencia = $this->db->prepare( "select * from categoria");
+    $sentencia = $this->db->prepare( "SELECT * FROM categoria");
     $sentencia->execute();
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  function getCategoria($id_categoria){
+    $sentencia = $this->db->prepare("SELECT * FROM categoria WHERE id_categoria = ?");
+    $sentencia->execute([$id_categoria]);
+    return $sentencia->fetch();
   }
 
   function guardarCategoria($nombre){
@@ -13,12 +19,12 @@ class CategoriasModel extends Model
   }
 
   function editarCategoria($nombre, $id_categoria){
-    $sentencia = $this->de->prepare("update from categoria where id_categoria=?");
+    $sentencia = $this->de->prepare("UPDATE FROM categoria WHERE id_categoria=?");
     $sentencia->execute([$nombre, $id_categoria]);
   }
   
   function borrarCategoria($id_categoria){
-    $sentencia = $this->db->prepare( "delete from categoria where id_categoria=?");
+    $sentencia = $this->db->prepare( "DELETE FROM categoria WHERE id_categoria=?");
     $sentencia->execute([$id_categoria]);
   }
 }

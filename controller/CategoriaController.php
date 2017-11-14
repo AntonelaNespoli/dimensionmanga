@@ -11,11 +11,12 @@ class CategoriaController extends Controller
     $this->view = new CategoriaView();
     $this->model = new CategoriasModel();
     $this->mangaModel = new MangasModel();
+    $this->i_model = new ImagenesModel();
   }
 
   public function index()
   {
-    $categorias = $this->model->getCategorias();    
+    $categorias = $this->model->getCategorias();
     $this->view->mostrarCategorias($categorias);
   }
   public function create()
@@ -23,9 +24,13 @@ class CategoriaController extends Controller
     $this->view->mostrarCrearCategorias();
   }
   public function mangasPorCategoria(){
-    $id_categoria= $_POST['id_categoria']; 
+    $id_categoria= $_POST['id_categoria'];
+    $categoria = $this->model->getCategoria($id_categoria);
     $mangas = $this->mangaModel->getMangas($id_categoria);
-    $this->view->mostrarMangasPorCategoria($mangas);
+    foreach ($mangas as $k => $manga){
+      $mangas[$k]["imagenes"] = $this->i_model->getImagenes($manga["id_manga"]);
+    }
+    $this->view->mostrarMangasPorCategoria($mangas, $categoria);
   }
 
   public function store()
@@ -33,17 +38,17 @@ class CategoriaController extends Controller
     if (UsuarioModel::isLoggedIn()) {
       $nombre = $_POST['nombre'];
       $this->model->guardarCategoria($nombre);
-      echo json_encode(['message' => 'La operación se completo con exito.']);
+      echo json_encode(['message' => 'La categoría se guardo exitosamente.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }
   }
-  public function destroy($params)
+  public function delete($params)
   {
     if (UsuarioModel::isLoggedIn()) {
     $id_categoria = $params[0];
     $this->model->borrarCategoria($id_categoria);
-    echo json_encode(['message' => 'La operación se completo con exito.']);
+    echo json_encode(['message' => 'La categoría se elimino exitosamente.']);
   } else {
     echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
   }

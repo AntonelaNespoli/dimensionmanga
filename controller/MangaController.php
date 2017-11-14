@@ -35,7 +35,7 @@ class MangaController extends Controller
       $id_manga = $params[0];
       if ($id_manga){
         $categorias = $this->c_model->getCategorias();
-        $this->view->mostrarCrearMangas($categorias, $this->model->getManga($id_manga));   
+        $this->view->mostrarCrearMangas($categorias, $this->model->getManga($id_manga), $this->i_model->getImagenes($id_manga));
       } else {
         $this->view->mostrarCrearMangas($categorias);
       }
@@ -68,7 +68,7 @@ class MangaController extends Controller
         $this->model->guardarManga($nombre, $autor, $descripcion, $categoria, $rutaTempImagenes);
       }
       
-      echo json_encode(['message' => 'La operación se completo con exito.']);
+      echo json_encode(['message' => 'El Manga se guardo exitosamente.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }

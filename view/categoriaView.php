@@ -5,8 +5,10 @@ class CategoriaView extends View
     $this->smarty->assign('categorias', $categorias);
     $this->smarty->display('templates/categorias.tpl');
   }
-  function mostrarMangasPorCategoria($mangas){
+  function mostrarMangasPorCategoria($mangas, $id_categoria){
+    $this->smarty->assign('isLoggedIn', UsuarioModel::isLoggedIn());
     $this->smarty->assign('mangas', $mangas);
+    $this->smarty->assign('categoria', $id_categoria);
     $this->smarty->display('templates/mangas.tpl');
   }
   function mostrarCrearCategorias(){

@@ -50,10 +50,8 @@
     <!-- fin nav bar -->
   </header>
    
-    <div class="main-content">
+    <div class="col-md-12 main-content">
     </div>
-  
-
   <!-- pie de pagina-->
   <footer class="container footer">
     <div class="row">
