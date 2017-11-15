@@ -31,7 +31,7 @@
   <div class="col-md-8 col-md-offset-2" id ="mensajeForm">
   </div>
   <div class="col-md-8 col-md-offset-3">
-  {if $manga['id_manga']}
+  {if $manga['id_manga'] && $isSuperUser}
       {foreach from=$imagenes item=imagen} 
         <section id="{$imagen['id_imagen']}" class="col-xs-12 col-sm-4 col-md-3 col-lg-3 portada">
           <img src="{$imagen['ruta']}"/>

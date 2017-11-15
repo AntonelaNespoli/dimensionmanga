@@ -43,6 +43,9 @@
             {if $isLoggedIn}
               <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearManga')" class="nav-boton">Subir Manga</a></li>
               <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearCategoria')" class="nav-boton">Subir Categoría</a></li>
+              <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/adminUsers')" class="nav-boton">Admin Usuarios</a></li>
+              <!--{if $isSuperUser}-->
+              <!--{/if}-->
             {/if}
           </ul>
         </div>

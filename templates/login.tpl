@@ -7,7 +7,7 @@
         <div class="form-group" >
           <label for="email">Correo electronico</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su mail" name="mail" required>
-          <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico con nadie.</small>
+          <small id="emailHelp" class="form-text text-muted">No compartiremos su correo electrónico con nadie.</small>
         </div>
         <div class="form-group">
           <label for="password">Clave</label>

@@ -12,6 +12,7 @@ class MangasView extends View
   }
   function mostrarCrearMangas($categorias, $manga = null, $imagenes = null){
     $this->smarty->assign('categorias', $categorias);
+    $this->smarty->assign('isSuperUser', UsuarioModel::isSuperUser());
     if ($manga) {
       $this->smarty->assign('manga', $manga);
       if ($imagenes){

@@ -60,11 +60,31 @@ class LoginController extends Controller
 
     }
   }
+
+  public function delete($params)
+  {
+    if (UsuarioModel::isLoggedIn()) {
+      $id_user = $params[0];
+      $this->model->borrarUser($id_user);
+      echo json_encode(['message' => 'El usuario a sido eliminado exitosamente.']);
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+    }
+  }
+
+  public function superUser(){
+
+  }
   public function destroy()
   {
     session_start();
     session_destroy();
     header('Location: '.HOME);
+  }
+
+  public function listaUsers(){
+    $users = $this->model->getUsers();
+    $this->view->mostrarListaUsers($users);
   }
 }
 

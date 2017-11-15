@@ -26,7 +26,10 @@ class ConfigApp
         'registro' => 'LoginController#registro',
         'logout' => 'LoginController#destroy',
         'verificarUsuario' => 'LoginController#verify',
-        'crearUsuario' => 'LoginController#create'
+        'crearUsuario' => 'LoginController#create',
+        'eliminarUsuario' => 'LoginController#delete',
+        'adminUsers' => 'LoginController#listaUsers',
+        'permisoSuperUser' => 'LoginController#superUser'
     ];
 
 }

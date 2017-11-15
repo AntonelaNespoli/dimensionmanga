@@ -1,9 +1,9 @@
-//Funciones Basicas
-
 'use strict';
 $(document).ready(function () {
     navigate('http://localhost/dimensionmanga/listaMangas');
 });
+
+//Funciones Basicas
 
 function navigate(url) {
     $.get(url, function (data) {
@@ -28,7 +28,7 @@ function mangaModal(id) {
 
 function login(form, event) {
     event.preventDefault();
-    
+
     var form_data = new FormData(form);
 
     $.ajax({
@@ -47,14 +47,14 @@ function login(form, event) {
             }
         },
         error: function (err) {
-        console.error(err);
+            console.error(err);
         }
     });
 }
 
 function crearUser(form, event) {
     event.preventDefault();
-    
+
     var form_data = new FormData(form);
     console.log(form, form_data);
     $.ajax({
@@ -73,14 +73,40 @@ function crearUser(form, event) {
             }
         },
         error: function (err) {
-        console.error(err);
+            console.error(err);
         }
     });
 }
+
+function deleteUser(id_usuario) {
+
+    $.ajax({
+        url: 'http://localhost/dimensionmanga/eliminarUsuario/' + id_usuario,
+        type: "DELETE",
+        success: function (res) {
+            $('#' + id_usuario).remove();
+            console.log(JSON.parse(res));
+            res = JSON.parse(res);
+            if (res.message) {
+                $("#mensaje").html($('<div class="alert alert-success" role="alert"></div>').append(res.message));
+            } else if (res.error) {
+                $("#mensaje").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
+            }
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+}
+$('.listaUsers').ready(function () {
+    var boolean = $('#cboxSuperUser').is(':checked');
+    console.log('ok');
+});
+
 //Funciones Items
 
 function deleteManga(id_manga) {
-    event.preventDefault();
+
     $.ajax({
         url: 'http://localhost/dimensionmanga/eliminarManga/' + id_manga,
         type: "DELETE",
@@ -114,7 +140,7 @@ function grabarManga(form, event) {
         success: function (res) {
             console.log(JSON.parse(res));
             res = JSON.parse(res);
-            if(res.message){
+            if (res.message) {
                 $("#mensajeForm").html($('<div class="alert alert-success " role="alert"></div>').append(res.message));
             } else if (res.error) {
                 $("#mensajeForm").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
@@ -126,11 +152,11 @@ function grabarManga(form, event) {
     });
 }
 
-function editManga(id_manga){
+function editManga(id_manga) {
     navigate('http://localhost/dimensionmanga/editarManga/' + id_manga);
 }
 
-function deleteImagen(id_imagen){
+function deleteImagen(id_imagen) {
 
     $.ajax({
         url: 'http://localhost/dimensionmanga/eliminarImagen/' + id_imagen,
@@ -150,14 +176,14 @@ function deleteImagen(id_imagen){
         }
     })
 }
-    
+
 //Funciones Categorias
 
 function guardarCategoria(form, event) {
     event.preventDefault();
 
     var form_data = new FormData(form);
-console.log(form);
+
     $.ajax({
         url: 'http://localhost/dimensionmanga/guardarCategoria',
         contentType: false,
@@ -180,6 +206,7 @@ console.log(form);
 }
 
 function deleteCategoria(id_categoria) {
+
     $.ajax({
         url: 'http://localhost/dimensionmanga/eliminarCategoria/' + id_categoria,
         type: "DELETE",
@@ -200,6 +227,6 @@ function deleteCategoria(id_categoria) {
     })
 }
 
-function editCategoria(id_categoria){
+function editCategoria(id_categoria) {
     navigate('http://localhost/dimensionmanga/editarCategoria/' + id_categoria);
 }

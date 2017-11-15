@@ -5,6 +5,11 @@ class UsuarioModel extends Model
   function __construct() {
     parent::__construct();
   }
+  function getUsers(){
+    $sentencia = $this->db->prepare( "SELECT * FROM usuario");
+    $sentencia->execute();
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
 
   function getUser($userMail){
     $sentencia = $this->db->prepare( "SELECT * FROM usuario WHERE mail = ? LIMIT 1");
@@ -12,7 +17,7 @@ class UsuarioModel extends Model
     return $sentencia->fetch();
   }
   
-  function userExist($useMail){
+  function userExist($userMail){
     $sentencia = $this->db->prepare("SELECT mail.* FROM usuario WHERE mail = ? LIMIT 1");
     $sentencia->execute([$userMail]);
     return $sentencia->fetch();
@@ -21,6 +26,11 @@ class UsuarioModel extends Model
   function recordUser($userName, $userMail, $hash){
     $sentencia = $this->db->prepare('INSERT INTO usuario(nombre, mail, clave) VALUES(?,?,?)');
     $sentencia->execute([$userName,$userMail, $hash]);
+  }
+
+  function borrarUser($id_user){
+    $sentencia = $this->db->prepare( "DELETE FROM usuario WHERE id_usuario = ?");
+    $sentencia->execute([$id_user]);
   }
 
   /**
@@ -35,6 +45,18 @@ class UsuarioModel extends Model
       $_SESSION['LAST_ACTIVITY'] = time();      
     }
     return $isLoggedIn;
+  }
+
+  /**
+   * usar para chequear si el usuario es administrador
+   * UsuarioModel::isSuperUser()
+   */
+  static function isSuperUser(){
+    $user = $_SESSION['USER'];
+    $sentencia = $this->db->prepare('SELECT super_user.* FROM usuario WHERE mail = ? LIMIT 1');
+    $sentencia->execute([$user]);
+    return $sentencia->fetch();
+
   }
 }
 ?>
