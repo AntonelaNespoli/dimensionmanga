@@ -50,21 +50,6 @@ class ComentariosApiController extends Api
     return $this->json_response($response, 200);
   }
 
-  public function editTarea($url_params = []) {
-    $body = json_decode($this->raw_data);
-    $id = $url_params[":id"];
-    $titulo = $body->titulo;
-    $descripcion = $body->descripcion;
-    $completada = $body->completada;
-    $tarea = $this->model->modificarTarea($id, $titulo, $descripcion, $completada);
-    return $this->json_response($tarea, 200);
-  }
-
-  public function updateCompletado($url_params = []) {
-    $id = $url_params[":id"];
-    $this->model->finalizarTarea($id);
-    return $this->json_response("Finalizado exitoso.", 200);
-  }
 }
 
  ?>
