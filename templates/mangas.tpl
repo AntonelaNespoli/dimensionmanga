@@ -1,5 +1,8 @@
 <article class="container cuerpo-index">
     <div class="row">
+        <div class="col-md-8 col-md-offset-2" id="mensaje"></div>
+    </div>
+    <div class="row">
         <div class="col" id="categoria">
             {if $categoria['id_categoria']}
                 <h1> {$categoria['nombre']} </h1>
@@ -8,8 +11,6 @@
                 <a href="#" onclick="editCategoria({$categoria['id_categoria']})"><i class="fa fa-edit fa-2x fa-fw" aria-hidden="true"></i></a>
                 {/if}
             {/if}
-        </div>
-        <div class="col-md-8 col-md-offset-2" id ="mensaje">
         </div>
         <div class="col">
             {foreach from=$mangas item=manga}

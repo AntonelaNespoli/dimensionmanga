@@ -154,7 +154,6 @@ console.log(form);
 }
 
 function deleteCategoria(id_categoria) {
-    event.preventDefault();
     $.ajax({
         url: 'http://localhost/dimensionmanga/eliminarCategoria/' + id_categoria,
         type: "DELETE",

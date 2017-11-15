@@ -57,12 +57,19 @@ class CategoriaController extends Controller
   public function delete($params)
   {
     if (UsuarioModel::isLoggedIn()) {
-    $id_categoria = $params[0];
-    $this->model->borrarCategoria($id_categoria);
-    echo json_encode(['message' => 'La categoría se elimino exitosamente.']);
-  } else {
-    echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
-  }
+      $id_categoria = $params[0];
+      try {
+        if ($this->model->borrarCategoria($id_categoria)) {
+          echo json_encode(['message' => 'La categoría se elimino exitosamente.']);
+        } else {
+          throw new Exception('No se puede eliminar la categoria ya que contiene Mangas.');
+        }
+      } catch(Exception $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+      }
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+    }
   }
 
   public function edit($params) {
