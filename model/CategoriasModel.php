@@ -25,7 +25,7 @@ class CategoriasModel extends Model
   
   function borrarCategoria($id_categoria){
     $sentencia = $this->db->prepare( "DELETE FROM categoria WHERE id_categoria=?");
-    $sentencia->execute([$id_categoria]);
+    return $sentencia->execute([$id_categoria]);
   }
 }
 

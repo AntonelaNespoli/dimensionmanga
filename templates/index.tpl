@@ -51,6 +51,13 @@
   </header>
    
     <div class="col-md-12 main-content">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar"></div>
+          </div>
+        </div>
+      </div>
     </div>
   <!-- pie de pagina-->
   <footer class="container footer">
@@ -82,7 +89,7 @@
     <div class="modal-content contenido-emergente">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="boton-cerrar-emergente">&times;</span></button>
-        <h4 class="modal-title">Detalles </h4>
+        <h4 class="modal-title">Detalles</h4>
       </div>
       <div class="modal-body"></div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

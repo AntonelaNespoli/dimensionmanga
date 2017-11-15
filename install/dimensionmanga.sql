@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2017 a las 06:42:02
+-- Tiempo de generación: 15-11-2017 a las 01:29:07
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -36,10 +36,32 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
-(1, 'ATP'),
-(2, '+11'),
 (3, '+16'),
-(4, '+18');
+(4, '+18'),
+(11, 'adad');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id_imagen` int(11) NOT NULL,
+  `fk_id_manga` int(11) NOT NULL,
+  `ruta` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id_imagen`, `fk_id_manga`, `ruta`) VALUES
+(38, 38, 'images/5a09fd48f24a7.'),
+(42, 40, 'images/5a09fe98c4bf7.'),
+(46, 44, 'images/5a09ff944c5b5.'),
+(51, 45, 'images/5a0b22100085b.'),
+(56, 44, 'images/5a0b4fd65b6bf.');
 
 -- --------------------------------------------------------
 
@@ -51,7 +73,6 @@ CREATE TABLE `manga` (
   `id_manga` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `autor` varchar(255) NOT NULL,
-  `imagen` varchar(255) NOT NULL,
   `descripcion` text NOT NULL,
   `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -60,8 +81,11 @@ CREATE TABLE `manga` (
 -- Volcado de datos para la tabla `manga`
 --
 
-INSERT INTO `manga` (`id_manga`, `nombre`, `autor`, `imagen`, `descripcion`, `id_categoria`) VALUES
-(2, 'One Piece', 'Eiichiro Oda', 'http://i59.servimg.com/u/f59/18/97/06/08/29303111.jpg', 'La serie comienza con la ejecución de Gol D. Roger, un hombre conocido como el Rey de los Piratas. Poco antes de su muerte, Roger hace mención a su gran tesoro legendario, el \"One Piece\", y a que puede ser tomado por todo aquél que lo desee. Ésto marca el inicio de una era conocida como la Gran Era Pirata. Como resultado, un sinnúmero de piratas zarparon hacia Grand Line con el objetivo de encontrarlo...', 3);
+INSERT INTO `manga` (`id_manga`, `nombre`, `autor`, `descripcion`, `id_categoria`) VALUES
+(38, 'Nanatsu no Taizai', 'Nakaba Suzuki', 'sdcdsvfbfdbdfvd', 3),
+(40, 'dfdfdf', 'fffsfs', 'fsfsfdfds', 4),
+(44, 'antonela', 'dsfdsfsf', 'sdfsdfdgjklkjhgfdsdfghjkjhg', 3),
+(45, 'Nanatsu no Taizai', 'Nakaba Suzuki', 'fefgtryjuyliuyytrfdghjklñpo09o8iuyhgnbv nmjuytrgfvghmjhkiuythgbv nmjuytr5dfg', 3);
 
 -- --------------------------------------------------------
 
@@ -94,6 +118,13 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id_imagen`),
+  ADD KEY `fk_id_manga` (`fk_id_manga`);
+
+--
 -- Indices de la tabla `manga`
 --
 ALTER TABLE `manga`
@@ -114,12 +145,17 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT de la tabla `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
@@ -128,6 +164,12 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`fk_id_manga`) REFERENCES `manga` (`id_manga`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `manga`
