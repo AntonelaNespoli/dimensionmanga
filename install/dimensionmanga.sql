@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2017 a las 01:29:07
+-- Tiempo de generación: 16-11-2017 a las 00:24:12
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -96,16 +96,17 @@ INSERT INTO `manga` (`id_manga`, `nombre`, `autor`, `descripcion`, `id_categoria
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL,
   `clave` varchar(255) NOT NULL,
-  `mail` varchar(255) NOT NULL
+  `super_user` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `clave`, `mail`) VALUES
-(2, 'Antonela_Admin', '$2y$10$r5yosfSVwLgCbprBrolX9us1zbq2WkCQFCrd5PCxAC/kMsBfYrzey', 'antonela@admin.php');
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `mail`, `clave`, `super_user`) VALUES
+(1, 'Antonela_Admin', 'antonela@admin.php', '$2y$10$r5yosfSVwLgCbprBrolX9us1zbq2WkCQFCrd5PCxAC/kMsBfYrzey', 1);
 
 --
 -- Índices para tablas volcadas
@@ -150,17 +151,17 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT de la tabla `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Restricciones para tablas volcadas
 --
