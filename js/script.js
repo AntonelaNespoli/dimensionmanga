@@ -24,7 +24,7 @@ function mangaModal(id) {
     });
 }
 
-//Funciones Login
+//Funciones Login, Registro
 
 function login(form, event) {
     event.preventDefault();
@@ -44,6 +44,32 @@ function login(form, event) {
                 window.location = res.url;
             } else if (res.error) {
                 $("#mensajeLogin").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
+            }
+        },
+        error: function (err) {
+        console.error(err);
+        }
+    });
+}
+
+function crearUser(form, event) {
+    event.preventDefault();
+    
+    var form_data = new FormData(form);
+    console.log(form, form_data);
+    $.ajax({
+        url: 'http://localhost/dimensionmanga/crearUsuario',
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: "POST",
+        success: function (res) {
+            console.log(JSON.parse(res));
+            res = JSON.parse(res);
+            if (res.url) {
+                window.location = res.url;
+            } else if (res.error) {
+                $("#mensajeRegistro").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
             }
         },
         error: function (err) {

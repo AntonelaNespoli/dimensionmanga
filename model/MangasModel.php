@@ -4,10 +4,10 @@ class MangasModel extends Model
 {
   function getMangas($id_categoria = null){
     if($id_categoria == null){
-    $sentencia = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria");
+    $sentencia = $this->db->prepare( "SELECT manga.*,c.nombre AS categoria FROM manga LEFT JOIN categoria AS c ON c.id_categoria = manga.id_categoria");
     $sentencia->execute();
     }else{
-      $sentencia = $this->db->prepare( "select manga.*,c.nombre as categoria from manga left join categoria as c on c.id_categoria = manga.id_categoria where manga.id_categoria = ?");
+      $sentencia = $this->db->prepare( "SELECT manga.*,c.nombre AS categoria FROM manga LEFT JOIN categoria AS c ON c.id_categoria = manga.id_categoria WHERE manga.id_categoria = ?");
       $sentencia->execute([$id_categoria]);
     } 
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);

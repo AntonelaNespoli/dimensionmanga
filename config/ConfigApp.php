@@ -23,8 +23,10 @@ class ConfigApp
         'editarManga' => 'MangaController#edit',
         //Configuración para url's login, logout y verificaciones
         'login' => 'LoginController#index',
+        'registro' => 'LoginController#registro',
         'logout' => 'LoginController#destroy',
-        'verificarUsuario' => 'LoginController#verify' 
+        'verificarUsuario' => 'LoginController#verify',
+        'crearUsuario' => 'LoginController#create'
     ];
 
 }

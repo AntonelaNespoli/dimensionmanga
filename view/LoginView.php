@@ -6,6 +6,10 @@ class LoginView extends View
     $this->smarty->display('templates/login.tpl');
   }
 
+  function mostrarRegistro($error = ''){
+    $this->smarty->assign('error', $error);
+    $this->smarty->display('templates/registro.tpl');
+  }
 }
 
  ?>

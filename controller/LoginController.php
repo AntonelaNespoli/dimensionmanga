@@ -15,11 +15,17 @@ class LoginController extends Controller
   {
     $this->view->mostrarLogin();
   }
+  
+  public function registro(){
+    $this->view->mostrarRegistro();
+  }
 
-  public function verify()
+  public function verify($userMail = '', $password = '')
   {
+    if (empty($userMail)&&(empty($password))){
       $userMail = $_POST['mail'];
       $password = $_POST['clave'];
+    }
 
       if(!empty($userMail) && !empty($password)){
         $user = $this->model->getUser($userMail);
@@ -34,7 +40,26 @@ class LoginController extends Controller
         }
       }
   }
+  public function create()
+  {
+    $userName = $_POST['name'];
+    $userMail = $_POST['mail'];
+    $password = $_POST['clave'];
+    $confirmPassword = $_POST['confirmarClave'];
+    $hash = password_hash($password, PASSWORD_DEFAULT);  
 
+    if ($password != $confirmPassword){
+      echo json_encode(['error' => 'Las contraseñas no coinciden']);
+    }else{
+      if ($this->model->userExist($userMail)){
+        echo json_encode(['error' => 'El mail ya esta registrado']);
+      }else{
+        $this->model->recordUser($userName, $userMail, $hash);
+        $this->verify($userMail, $password);
+      }
+
+    }
+  }
   public function destroy()
   {
     session_start();

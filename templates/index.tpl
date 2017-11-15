@@ -21,8 +21,9 @@
     <nav class="navbar navbar-default">
     
     {if $isLoggedIn}
-    <a href="logout" class="btn btn-login">Sing out</a>
+      <a href="logout" class="btn btn-login">Sing out</a>
     {else}
+      <button type="submit" onclick="navigate('http://localhost/dimensionmanga/registro')" class="btn btn-login">Registrarse!</button>
       <button type="submit" onclick="navigate('http://localhost/dimensionmanga/login')" class="btn btn-login">Sing in</button>
     {/if}
     
