@@ -40,14 +40,12 @@ class ComentariosApiController extends Api
   public function createComments($url_params = []) {
     $body = json_decode($this->raw_data);
     $user = $body->user;
-    $texto = $body->comentario;
+    $comentario = $body->comentario;
     $puntaje = $body->puntaje;
     $id_manga = $body->id_manga;
-    $comentario = $this->model->postComment($user, $texto, $puntaje, $id_manga);
-    $response = new stdClass();
-    $response->tareas = [$tarea];
-    $response->status = 200;
-    return $this->json_response($response, 200);
+    $post = $this->model->postComment($user, $texto, $puntaje, $id_manga);
+
+    return $this->json_response("El comentario se creo exitosamente.", 200);
   }
 
 }
