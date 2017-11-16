@@ -1,37 +1,33 @@
 <?php
 
-require_once('../model/ComentariosModel.php');
-require_once('Api.php');
+include_once('model/ComentariosModel.php');
 
-class ComentariosApiController extends Api
+class ComentariosController extends Controller
 {
   protected $model;
 
   function __construct()
   {
-      parent::__construct();
       $this->model = new ComentariosModel();
   }
 
-  public function getComments($url_param = [])
+  public function getComments($id_manga)
   {
-    $id_manga = $url_params[":id_manga"];
     $comentarios = $this->model->getComments($id_manga);
     if($cometarios){
-        return $this->json_response($comentarios, 200);
+        return $this->json_response($comentarios);
     }else{
-        return $this->json_response(false, 404);
+        echo json_encode(['mensagge' => 'No se encontraron comentarios.']);
     }
   }
 
-  public function deleteComments($url_params = [])
+  public function deleteComments($id)
   {
-      $id = $url_params[":id"];
       $comentario = $this->model->getComment($id);
       if($comentario)
       {
         $this->model->deleteComment($id);
-        return $this->json_response("Borrado exitoso.", 200);
+        return $this->json_response('Se elimino correctamente');
       }
       else
         return $this->json_response(false, 404);

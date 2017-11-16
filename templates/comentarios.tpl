@@ -1,6 +1,6 @@
-{{#comentarios}}
-<div class="col" id="comentarios{{id_comentario}}">
-  <h4>{{fk_id_usuario}} - Puntaje manga: {{puntaje}}</h4>
+<div id="listaComentarios" class="row"> 
+    <div class="col" id="{comentarios[id_comentario]}">
+  <h4>{comentarios[fk_id_usuario]} - Puntaje manga: {{puntaje}}</h4>
   <p>{{comentario}}</p>
 </div>
 
@@ -10,3 +10,4 @@
   <a class="js-completada" data-idtarea="{{id_comentario}}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
 </li>
 {{/comentarios}}
+</div>
