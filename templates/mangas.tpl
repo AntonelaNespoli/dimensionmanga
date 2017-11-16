@@ -23,6 +23,7 @@
                     <a href="#" onclick="deleteManga({$manga['id_manga']})"><i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i></a>
                     <a href="#" onclick="editManga({$manga['id_manga']})"><i class="fa fa-edit fa-2x fa-fw" aria-hidden="true"></i></a>
                     {/if}
+                    <a href="#" onclick="mostrarComentarios({$manga['id_manga']})"><i class="fa fa-comments fa-2x fa-fw" aria-hidden="true"></i></a>
                 </section>
             {/foreach}
         </div>

@@ -31,7 +31,7 @@ class ConfigApp
         'adminUsers' => 'LoginController#listaUsers',
         'permisoSuperUser' => 'LoginController#superUser',
         //Configuración para comentarios
-        'comentariosGET'=> 'ComentariosApiController#getComments',
+        'mostrarComentarios'=> 'ComentariosController#getComments',
         'comentariosDELETE'=> 'ComentariosApiController#deleteComments',
         'comentariosPOST'=> 'ComentariosApiController#createComments'
     ];

@@ -35,7 +35,7 @@ class UsuarioModel extends Model
 
   function editPermissionSuper($id_user, $permisoSuper){
     $sentencia = $this->db->prepare('UPDATE usuario SET super_user = ?  WHERE id_usuario = ?');
-    $sentencia->execute([$id_user, $permisoSuper]);
+    $sentencia->execute([$permisoSuper, $id_user]);
   }
 
   /**

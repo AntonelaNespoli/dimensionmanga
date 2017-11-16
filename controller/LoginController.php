@@ -63,7 +63,7 @@ class LoginController extends Controller
 
   public function delete($params)
   {
-    if (UsuarioModel::isLoggedIn()) {
+    if (UsuarioModel::isLoggedIn() && UsuarioModel::isSuperUser()) {
       $id_user = $params[0];
       $this->model->deleteUser($id_user);
       echo json_encode(['message' => 'El usuario a sido eliminado exitosamente.']);
@@ -73,9 +73,10 @@ class LoginController extends Controller
   }
 
   public function superUser($params){
-    if (UsuarioModel::isLoggedIn() && UsuarioModel::isSuperUsuario()) {
+    if (UsuarioModel::isLoggedIn() && UsuarioModel::isSuperUser()) {
       $id_user = $params[0];
       $permisoSuper = $params[1];
+      
       $this->model->editPermissionSuper($id_user, $permisoSuper);
       echo json_encode(['message' => 'El permiso se cambio correctamente']);
     } else {
