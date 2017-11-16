@@ -14,6 +14,8 @@ class Model
       $this->db = new PDO('mysql:host=localhost;dbname=dimensionmanga;charset=utf8', self::DB_USER, self::DB_PASS);
     } catch (PDOException $e) {
       $this->install();
+    } catch (Exception $e) {
+      echo $e->getMessage();
     }
   }
 
