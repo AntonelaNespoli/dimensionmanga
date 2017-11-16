@@ -60,6 +60,7 @@ function navigatePost(url, data) {
 function mangaModal(id) {
     $.post('http://localhost/dimensionmanga/descripcionManga', { id_manga: id }, function (data) {
         $('.modal-body').html(data);
+        $('.modal-body .carousel').carousel();
         $('#manga-modal').modal('show');
     });
 }
