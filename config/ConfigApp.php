@@ -29,7 +29,11 @@ class ConfigApp
         'crearUsuario' => 'LoginController#create',
         'eliminarUsuario' => 'LoginController#delete',
         'adminUsers' => 'LoginController#listaUsers',
-        'permisoSuperUser' => 'LoginController#superUser'
+        'permisoSuperUser' => 'LoginController#superUser',
+        //Configuración para comentarios
+        'comentariosGET'=> 'ComentariosApiController#getComments',
+        'comentariosDELETE'=> 'ComentariosApiController#deleteComments',
+        'comentariosPOST'=> 'ComentariosApiController#createComments'
     ];
 
 }

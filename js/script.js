@@ -1,5 +1,7 @@
 'use strict';
 $(document).ready(function () {
+    let tplComments;
+    $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => tplComments = template);
     navigate('http://localhost/dimensionmanga/listaMangas');
 });
 
@@ -8,6 +10,15 @@ $(document).ready(function () {
 function navigate(url) {
     $.get(url, function (data) {
         $('.main-content').html(data);
+        $('#cboxSuperUser').change(function () {
+            var id_user = $(".idUser").attr('id');
+            console.log(id_user);
+            if (this.checked) {
+                navigate('http://localhost/dimensionmanga/permisoSuperUser/'+ id_user + '/1' );
+            }else{
+                navigate('http://localhost/dimensionmanga/permisoSuperUser/'+ id_user + '/0' );                
+            }
+        });
     });
 }
 
@@ -98,10 +109,6 @@ function deleteUser(id_usuario) {
         }
     });
 }
-$('.listaUsers').ready(function () {
-    var boolean = $('#cboxSuperUser').is(':checked');
-    console.log('ok');
-});
 
 //Funciones Items
 

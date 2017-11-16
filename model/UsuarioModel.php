@@ -28,9 +28,14 @@ class UsuarioModel extends Model
     $sentencia->execute([$userName,$userMail, $hash]);
   }
 
-  function borrarUser($id_user){
+  function deleteUser($id_user){
     $sentencia = $this->db->prepare( "DELETE FROM usuario WHERE id_usuario = ?");
     $sentencia->execute([$id_user]);
+  }
+
+  function editPermissionSuper($id_user, $permisoSuper){
+    $sentencia = $this->db->prepare('UPDATE usuario SET super_user = ?  WHERE id_usuario = ?');
+    $sentencia->execute([$id_user, $permisoSuper]);
   }
 
   /**
@@ -53,10 +58,9 @@ class UsuarioModel extends Model
    */
   static function isSuperUser(){
     $user = $_SESSION['USER'];
-    $sentencia = $this->db->prepare('SELECT super_user.* FROM usuario WHERE mail = ? LIMIT 1');
-    $sentencia->execute([$user]);
-    return $sentencia->fetch();
-
+    if ($user)
+      return (boolean) $user['super_user'];
+    return false;
   }
 }
 ?>

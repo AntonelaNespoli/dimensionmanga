@@ -43,9 +43,9 @@
             {if $isLoggedIn}
               <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearManga')" class="nav-boton">Subir Manga</a></li>
               <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/crearCategoria')" class="nav-boton">Subir Categoría</a></li>
+              {if $isSuperUser}
               <li role="presentation"><a href="#" onclick="navigate('http://localhost/dimensionmanga/adminUsers')" class="nav-boton">Admin Usuarios</a></li>
-              <!--{if $isSuperUser}-->
-              <!--{/if}-->
+              {/if}
             {/if}
           </ul>
         </div>
@@ -100,6 +100,7 @@
 </div><!-- /.modal -->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

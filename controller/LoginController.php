@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         if((!empty($user)) && password_verify($password, $user['clave'])) {
             session_start();
-            $_SESSION['USER'] = $userMail;
+            $_SESSION['USER'] = $user;
             $_SESSION['LAST_ACTIVITY'] = time();
             echo json_encode(['url' => HOME]);
         } else {
@@ -65,16 +65,24 @@ class LoginController extends Controller
   {
     if (UsuarioModel::isLoggedIn()) {
       $id_user = $params[0];
-      $this->model->borrarUser($id_user);
+      $this->model->deleteUser($id_user);
       echo json_encode(['message' => 'El usuario a sido eliminado exitosamente.']);
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }
   }
 
-  public function superUser(){
-
+  public function superUser($params){
+    if (UsuarioModel::isLoggedIn() && UsuarioModel::isSuperUsuario()) {
+      $id_user = $params[0];
+      $permisoSuper = $params[1];
+      $this->model->editPermissionSuper($id_user, $permisoSuper);
+      echo json_encode(['message' => 'El permiso se cambio correctamente']);
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+    }
   }
+
   public function destroy()
   {
     session_start();

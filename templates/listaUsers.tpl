@@ -7,9 +7,9 @@
             <table class="table">
                 <tbody>
                     {foreach from=$users item=user}
-                        <tr id="{$user['id_usuario']}">
+                        <tr id="{$user['id_usuario']}" class="idUser">
                             <td><h5>{$user['nombre']}</h5></td>
-                            <td><h5><input type="checkbox" id="cboxSuperUser" value="superUser" {if {$user['super_user']}}checked {/if}>  SuperUser</h5></td>
+                            <td><h5><input type="checkbox" id="cboxSuperUser" value="{$user['id_usuario']}" {if {$user['super_user']}}checked {/if}>  SuperUser</h5></td>
                             <td><a href="#" onclick="deleteUser({$user['id_usuario']})"><i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i></a></td>
                         </tr>
                     {/foreach}
