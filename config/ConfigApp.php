@@ -32,8 +32,8 @@ class ConfigApp
         'permisoSuperUser' => 'LoginController#superUser',
         //Configuración para comentarios
         'mostrarComentarios'=> 'ComentariosController#getComments',
-        'eliminarComentarios'=> 'ComentariosApiController#deleteComment',
-        'crearComentarios'=> 'ComentariosApiController#createComment'
+        'eliminarComentario'=> 'ComentariosController#deleteComment',
+        'crearComentario'=> 'ComentariosController#createComment'
     ];
 
 }

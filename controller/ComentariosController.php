@@ -43,11 +43,13 @@ class ComentariosController extends Controller
 
       $comentario = $_POST['comentario'];
       $puntaje = $_POST['puntaje'];
-      $id_manga = $POST['fk_id_manga'];
-      $id_usuario = $POST['fk_id_usuario'];
+      $id_manga = $POST['id_manga'];
+      $id_usuario = $POST['id_usuario'];
 
       $this->model->createComment($comentario, $puntaje, $id_manga, $id_usuario);
-      echo json_encode(['message' => 'El comentario se creo exitosamente.']);
+      
+        echo json_encode(['message' => 'El comentario se creo exitosamente.']);
+
     } else {
       echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
     }

@@ -273,3 +273,29 @@ function editCategoria(id_categoria) {
 function mostrarComentarios(id_manga){
     navigate('http://localhost/dimensionmanga/mostrarComentarios/' + id_manga);
 }
+
+function grabarComentario(form, event) {
+    event.preventDefault();
+
+    var form_data = new FormData(form);
+    
+    $.ajax({
+        url: 'http://localhost/dimensionmanga/crearComentario',
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: "POST",
+        success: function (res) {
+            console.log(JSON.parse(res));
+            res = JSON.parse(res);
+            if (res.message) {
+                $("#mensaje").html($('<div class="alert alert-success " role="alert"></div>').append(res.message));
+            } else if (res.error) {
+                $("#mensaje").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
+            }
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+}
