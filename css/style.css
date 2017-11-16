@@ -16,6 +16,12 @@ select {
     color: #000;
 }
 
+.carousel-control i {
+    color: white;
+    position: absolute;
+    top: 50%;
+}
+
 body {
     color: #75F900;
     background-image: url(../images/fondoestrellado.jpg);
