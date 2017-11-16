@@ -266,3 +266,9 @@ function deleteCategoria(id_categoria) {
 function editCategoria(id_categoria) {
     navigate('http://localhost/dimensionmanga/editarCategoria/' + id_categoria);
 }
+
+//Funciones Comentarios
+
+function mostrarComentarios(id_manga){
+    navigate('http://localhost/dimensionmanga/mostrarComentarios/' + id_manga);
+}

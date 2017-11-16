@@ -24,8 +24,7 @@ class MangasModel extends Model
     $rutas = [];
 
     foreach ($imagenes as $imagen) {
-      $tipo = $_FILES[$imagen]['type']; //mimetype probar
-      $destino_final = 'images/' . uniqid() .'.'. $tipo;
+      $destino_final = 'images/' . uniqid() .'.'. $jpg;
       move_uploaded_file($imagen, $destino_final);
       $rutas[] = $destino_final;
     }

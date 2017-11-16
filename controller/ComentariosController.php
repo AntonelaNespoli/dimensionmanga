@@ -1,6 +1,8 @@
 <?php
 
 include_once('model/ComentariosModel.php');
+include_once('view/ComentariosView.php');
+include_once('model/UsuarioModel.php');
 
 class ComentariosController extends Controller
 {
@@ -9,39 +11,46 @@ class ComentariosController extends Controller
   function __construct()
   {
       $this->model = new ComentariosModel();
+      $this->view =new ComentariosView();
+      $this->u_model =new UsuarioModel();
   }
 
-  public function getComments($id_manga)
+  public function getComments($params)
   {
+    $id_manga = $params[0];
     $comentarios = $this->model->getComments($id_manga);
-    if($cometarios){
-        return $this->json_response($comentarios);
+    $usuarios = $this->u_model->getUsers();
+    if($comentarios){
+      $this->view->mostrarComentarios($comentarios, $usuarios);
     }else{
-        echo json_encode(['mensagge' => 'No se encontraron comentarios.']);
+        echo json_encode(['error' => 'No se encontraron comentarios.']);
     }
   }
 
-  public function deleteComments($id)
+  public function deleteComment($id)
   {
-      $comentario = $this->model->getComment($id);
-      if($comentario)
-      {
-        $this->model->deleteComment($id);
-        return $this->json_response('Se elimino correctamente');
-      }
-      else
-        return $this->json_response(false, 404);
+    $comentario = $this->model->getComment($id);
+    if($comentario){
+      $this->model->deleteComment($id);
+      echo json_encode(['manssega' => 'El comentario se elimino correctamente.']);
+    } else{
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
   }
+}
 
-  public function createComments($url_params = []) {
-    $body = json_decode($this->raw_data);
-    $user = $body->user;
-    $comentario = $body->comentario;
-    $puntaje = $body->puntaje;
-    $id_manga = $body->id_manga;
-    $post = $this->model->postComment($user, $texto, $puntaje, $id_manga);
+  public function createComment() {
+    if (UsuarioModel::isLoggedIn()) {
 
-    return $this->json_response("El comentario se creo exitosamente.", 200);
+      $comentario = $_POST['comentario'];
+      $puntaje = $_POST['puntaje'];
+      $id_manga = $POST['fk_id_manga'];
+      $id_usuario = $POST['fk_id_usuario'];
+
+      $this->model->createComment($comentario, $puntaje, $id_manga, $id_usuario);
+      echo json_encode(['message' => 'El comentario se creo exitosamente.']);
+    } else {
+      echo json_encode(['error' => 'Usted no tiene permisos para realizar esta operación.']);
+    }
   }
 
 }

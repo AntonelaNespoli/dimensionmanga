@@ -11,15 +11,18 @@
   include_once 'model/MangasModel.php';
   include_once 'model/UsuarioModel.php';
   include_once 'model/CategoriasModel.php';
+  include_once 'model/ComentariosModel.php';
   include_once 'view/View.php';
   include_once 'view/MangasView.php';
   include_once 'view/LoginView.php';
   include_once 'view/CategoriaView.php';
+  include_once 'view/ComentariosView.php';
   include_once 'controller/Controller.php';
   include_once 'controller/IndexController.php';
   include_once 'controller/MangaController.php';
   include_once 'controller/LoginController.php';
   include_once 'controller/CategoriaController.php';
+  include_once 'controller/ComentariosController.php';
 
 function parseURL($url)
 {
