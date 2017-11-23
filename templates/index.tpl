@@ -72,7 +72,8 @@
       </div>
       <div class="col-md-4 col-sm-6 footer-contacts">
         <form>
-          <input class="form-control js-input-newsletter" type="email" placeholder="Email Address">
+          <label for="suscribe">Suscribite a nuestro newsletter</label>
+          <input class="form-control js-input-newsletter" type="email" name="subscribe" placeholder="Email Address">
           <button class="btn btn-default btn-categorias js-bnt-newsletter" type="button">Enviar</button>
         </form>
       </div>

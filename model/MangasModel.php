@@ -24,7 +24,7 @@ class MangasModel extends Model
     $rutas = [];
 
     foreach ($imagenes as $imagen) {
-      $destino_final = 'images/' . uniqid() .'.'. $jpg;
+      $destino_final = 'images/' . uniqid() .'.jpg';
       move_uploaded_file($imagen, $destino_final);
       $rutas[] = $destino_final;
     }
