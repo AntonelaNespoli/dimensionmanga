@@ -11,7 +11,7 @@ function navigate(url) {
     $.get(url, function (data) {
         $('.main-content').html(data);
         $('.cboxSuperUser').change(function () {
-            var id_user = this.getAttribute('data-id');
+            let id_user = this.getAttribute('data-id');
             if (this.checked) {
                 $.ajax({
                     url: 'http://localhost/dimensionmanga/permisoSuperUser/'+ id_user + '/1',
@@ -70,7 +70,7 @@ function mangaModal(id) {
 function login(form, event) {
     event.preventDefault();
 
-    var form_data = new FormData(form);
+    let form_data = new FormData(form);
 
     $.ajax({
         url: 'http://localhost/dimensionmanga/verificarUsuario',
@@ -96,7 +96,7 @@ function login(form, event) {
 function crearUser(form, event) {
     event.preventDefault();
 
-    var form_data = new FormData(form);
+    let form_data = new FormData(form);
     console.log(form, form_data);
     $.ajax({
         url: 'http://localhost/dimensionmanga/crearUsuario',
@@ -219,7 +219,7 @@ function deleteImagen(id_imagen) {
 function guardarCategoria(form, event) {
     event.preventDefault();
 
-    var form_data = new FormData(form);
+    let form_data = new FormData(form);
 
     $.ajax({
         url: 'http://localhost/dimensionmanga/guardarCategoria',
@@ -268,34 +268,31 @@ function editCategoria(id_categoria) {
     navigate('http://localhost/dimensionmanga/editarCategoria/' + id_categoria);
 }
 
-//Funciones Comentarios
+//Funciones Comentarios 
+//cambiar LAS FUNCIONES para servir con los verbos GET, POST Y DELETE, con AJAX por medio de la API
 
 function mostrarComentarios(id_manga){
-    navigate('http://localhost/dimensionmanga/mostrarComentarios/' + id_manga);
-}
-
-function grabarComentario(form, event) {
-    event.preventDefault();
-
-    var form_data = new FormData(form);
-    
     $.ajax({
-        url: 'http://localhost/dimensionmanga/crearComentario',
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: "POST",
-        success: function (res) {
-            console.log(JSON.parse(res));
-            res = JSON.parse(res);
-            if (res.message) {
-                $("#mensaje").html($('<div class="alert alert-success " role="alert"></div>').append(res.message));
-            } else if (res.error) {
-                $("#mensaje").html($('<div class="alert alert-danger" role="alert"></div>').append(res.error));
-            }
-        },
-        error: function (err) {
-            console.error(err);
+        method: "GET",
+        url:"api/comentario/" + id_manga
+    }).done(function(comentarios){
+        $('.media').remove();
+        for (let coment of comentarios.comentarios){
+            let date1 = new Date(null);
+            date1.setTime(coment.fecha*1000);
+            let fechaParseada = date1.toLocaleString();
+            coment.fecha = fechaParseada;
         }
+        let rendered = Mustache.render(templateComentarios, comentarios);
+        $('#listaComentarios').append(rendered);
+
+        let date = Math.floor(new Date().getTime() / 1000)
+        setInterval(function() {
+            let fechaActualizada;
+            cargarUltimosComentarios(id, fechaActulizada, comentarios);
+        }, 2000);
+    }).fail(function() {
+        $('#listaComentarios').append('<div class="alert alert-danger" role="alert">No es posible cargar la lista de comentarios</div>');
     });
 }
+

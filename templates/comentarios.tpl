@@ -2,19 +2,6 @@
     <div class="col-md-8 col-md-offset-2" id="mensaje"></div>
 </div>
 <div id="listaComentarios" class="row"> 
-    {foreach from=$comentarios item=comentario}
-    <div class="col-md-12" id="{$comentario['id_comentario']}">
-        {foreach from=$usuarios item=usuario}
-            {if $comentario['fk_id_usuario'] == $usuario['id_usuario']}
-                <h4 class="title">{$usuario['nombre']} - Puntaje manga: {$comentario['puntaje']}</h4>
-            {/if}
-        {/foreach}
-        <p>{$comentario['comentario']}</p>
-        {if $isSuperUser}
-            <a href="#" onclick="deleteComentario({$cometario['id_comentario']})"><i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i></a>
-        {/if}
-    </div>
-    {/foreach}
 </div>
 <div class="row">
     {if $isLoggedIn}

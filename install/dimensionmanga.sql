@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-11-2017 a las 15:13:27
+-- Tiempo de generación: 06-12-2017 a las 21:57:58
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -54,6 +54,14 @@ CREATE TABLE `comentario` (
   `fk_id_manga` int(11) NOT NULL,
   `fk_id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `comentario`, `puntaje`, `fk_id_manga`, `fk_id_usuario`) VALUES
+(1, 'Recomendable, muy buen manga.', 5, 46, 1),
+(2, 'Recomendable, muy buen manga.', 5, 46, 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +191,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
