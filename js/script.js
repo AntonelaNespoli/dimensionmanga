@@ -274,23 +274,14 @@ function editCategoria(id_categoria) {
 function mostrarComentarios(id_manga){
     $.ajax({
         method: "GET",
-        url:"api/comentario/" + id_manga
+        url:"api/comentarios/" + id_manga
     }).done(function(comentarios){
         $('.media').remove();
-        for (let coment of comentarios.comentarios){
-            let date1 = new Date(null);
-            date1.setTime(coment.fecha*1000);
-            let fechaParseada = date1.toLocaleString();
-            coment.fecha = fechaParseada;
-        }
-        let rendered = Mustache.render(templateComentarios, comentarios);
+        
+        let rendered = Mustache.render(tplComments, comentarios);
         $('#listaComentarios').append(rendered);
 
-        let date = Math.floor(new Date().getTime() / 1000)
-        setInterval(function() {
-            let fechaActualizada;
-            cargarUltimosComentarios(id, fechaActulizada, comentarios);
-        }, 2000);
+
     }).fail(function() {
         $('#listaComentarios').append('<div class="alert alert-danger" role="alert">No es posible cargar la lista de comentarios</div>');
     });
