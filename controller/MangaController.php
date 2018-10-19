@@ -20,6 +20,8 @@ class MangaController extends Controller
     $mangas = $this->model->getMangas();
     foreach ($mangas as $k => $manga){
       $mangas[$k]["imagenes"] = $this->i_model->getImagenes($manga["id_manga"]);
+      echo "<script>console.log(".json_encode($mangas).");</script>";              
+
     }
     $this->view->mostrarMangas($mangas);
   }
